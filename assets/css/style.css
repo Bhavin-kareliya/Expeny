@@ -1,0 +1,348 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+html,
+body {
+    width: 100%;
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+}
+
+@media (max-width:992px) {
+    #dashboard .logo {
+        text-align: center;
+    }
+    #login .loginImgContainer,
+    #signUp .signUpImgContainer,
+    #forgotPassword .forgotPasswordImgContainer {
+        background: none;
+    }
+    #login .pageHeader,
+    #signUp .pageHeader,
+    #forgotPassword .pageHeader {
+        text-align: center;
+    }
+    #dashboard .navigation .profile {
+        display: none !important;
+    }
+}
+
+.mainContainer .sidebar .menuList {
+    height: calc(81.8vh);
+}
+
+#login .loginImgContainer {
+    background: url("../images/loginBg.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#signUp .signUpImgContainer {
+    background: url("../images/join.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+input[type]:focus {
+    background-color: #E8F0FE;
+    box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 25%);
+    outline: 0;
+}
+
+#forgotPassword .forgotPasswordImgContainer {
+    background: url("../images/forgotPassword.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#login .loginContainer .formContent,
+#signUp .signUpContainer .formContent,
+#forgotPassword .forgotPasswordContainer .formContent {
+    height: 100vh;
+}
+
+#homePage {
+    padding: 30px 30px;
+}
+
+#homePage .homePageLogo {
+    border-radius: 50%;
+}
+
+#homePage .featuresHead {
+    margin-left: 60px;
+    font-size: 40px;
+    margin-top: 5rem;
+}
+
+#homePage .featuresList {
+    margin-top: 50px;
+    list-style: none;
+}
+
+#homePage .featuresList li {
+    margin: 20px 10px;
+    font-size: 18px;
+}
+
+#homePage header a {
+    text-decoration: none;
+    color: #2F1160;
+}
+
+#homePage footer a {
+    color: #2F1160;
+}
+
+#homePage .homePageImages {
+    display: flex;
+    justify-content: center;
+    justify-self: center;
+}
+
+#homePage main .pageTitle {
+    margin-top: 8rem;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 70px;
+}
+
+#homePage main .pageContent {
+    margin: 3rem 10rem;
+    text-align: center;
+    font-size: 18px;
+}
+
+.pageHeader {
+    font-size: 30px;
+    font-weight: bold;
+    color: #2F1160;
+    margin-bottom: 40px;
+}
+
+.primaryBtn {
+    background-color: #2F1160;
+    color: #fff;
+}
+
+.primaryBtn:hover {
+    background-color: #2F1160;
+    color: #fff;
+}
+
+.primaryBtn:focus {
+    background-color: #2F1160 !important;
+    color: #fff !important;
+}
+
+#rememberUser:checked {
+    background-color: #2F1160;
+}
+
+.form-label,
+.form-check-label,
+.form-control {
+    color: #2F1160;
+}
+
+#loginForm .forgotPassword a,
+#forgotPassword .backToLogin a {
+    font-weight: bold;
+    color: #2F1160;
+    text-decoration: none;
+}
+
+.navigation {
+    padding: 20px 50px;
+    box-shadow: 0 5px 3px -6px #2F1160;
+}
+
+.searchbar .searchIcon {
+    background-color: white;
+    border-color: #2F1160;
+    border-right: 0px !important;
+}
+
+.searchbar {
+    height: 45px;
+    width: 70%;
+}
+
+.searchbar .searchField {
+    border-left: 0px;
+    border-color: #2F1160;
+    color: #2F1160;
+    margin-right: 2rem;
+}
+
+.searchField:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: #2F1160;
+}
+
+.username {
+    color: #2F1160;
+    font-weight: bold;
+    margin-right: 5px !important;
+}
+
+.expandIcon {
+    font-weight: bold;
+    color: red;
+}
+
+.imgContainer {
+    background-color: aliceblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90px;
+    border-radius: 50%;
+    border: 1px solid #ced4da;
+}
+
+.sidebar {
+    box-shadow: 0px 1px 1px 0px #2f1160;
+}
+
+.menu .menuList {
+    list-style: none;
+}
+
+.menuList li a {
+    font-size: 16px;
+    text-decoration: none;
+    color: #2F1160;
+}
+
+.menuList li:first-child {
+    padding-top: 40px !important;
+}
+
+.menuList li {
+    padding: 15px 0px;
+}
+
+.menuList li a.active {
+    color: #6200FF;
+}
+
+.mainContent {
+    padding: 20px 50px;
+}
+
+.contentHead {
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: #2F1160;
+}
+
+.mainContent .users {
+    overflow-x: scroll;
+}
+
+.mainContent .users a {
+    text-decoration: none;
+    margin-right: 40px;
+}
+
+.mainContent .users .singleUser {
+    direction: rtl;
+    border: 1px solid #28706C;
+    color: #F1C24A;
+    letter-spacing: 0.3rem;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 15px;
+    width: 75px;
+    height: 75px;
+    background-color: #28706C;
+    box-shadow: 3px 3px 1px 1px #2f1160;
+}
+
+.users .username {
+    color: #28706C !important;
+    font-size: 14px;
+}
+
+.mainContent .users::-webkit-scrollbar,
+.cardHolder::-webkit-scrollbar {
+    visibility: hidden;
+}
+
+.mainContent .recents {
+    margin-top: 20px;
+    margin-bottom: 23px;
+}
+
+.cardHolder {
+    overflow-x: scroll;
+    position: relative;
+}
+.cardHolder .scroller{
+    position: sticky;
+    right: 0;
+    width: 50px;
+}
+
+.cardHolder .card {
+    width: 295px;
+    padding: 20px;
+    margin-right: 58px;
+}
+
+.card .card-title {
+    color: #2F1160;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.card .card-text {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #2F1160;
+}
+
+.card .card-link {
+    color: #2F1160;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.footer {
+    border-top: 1px solid #2F1160;
+    padding: 34px 10px;
+}
+
+.footer .copyright {
+    color: #2F1160;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.footer a {
+    color: #2F1160;
+    text-decoration: none;
+}
+
+#trash .callout-info {
+    border-left: 5px solid #2F1160 !important;
+    border: 1px solid #c2cada;
+    border-radius: 5px;
+}
+
+#trash .callout-info .msg {
+    display: flex;
+    align-items: center;
+    align-self: center;
+}
+
+#profile .imgContainer {
+    position: relative;
+}
+
+#profile .imgContainer i {
+    position: absolute;
+    bottom: 0px;
+    right: 0;
+    color: #2F1160;
+}
