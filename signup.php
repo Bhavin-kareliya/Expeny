@@ -19,7 +19,7 @@
             <div class="col-12 col-lg-6 signUpImgContainer m-0 p-0">
             </div>
             <div class="col-12 col-lg-6 d-flex justify-content-center align-items-center formContent">
-                <form action="Login.html" id="signUpForm" class=" col-10 col-lg-6">
+                <form action="signin.html" id="signUpForm" class=" col-10 col-lg-6">
                     <h4 class="pageHeader">Sign Up</h4>
                     <div class="mb-3">
                         <label for="fullName" class="form-label">Full Name</label>
@@ -71,7 +71,7 @@
                         </div>
                     </div>
                     <input type="submit" class="btn btn-primary primaryBtn" value="Register"></button>
-                    <span class="mx-3 forgotPassword"><a href="Login.html">Already Registered?</a></span>
+                    <span class="mx-3 forgotPassword"><a href="signin.html">Already Registered?</a></span>
                 </form>
             </div>
         </div>
@@ -86,3 +86,7 @@
 <script src="assets/js/main.js"></script>
 
 </html>
+
+<?php 
+    print("<h1>PHP Print</h1>");
+?>

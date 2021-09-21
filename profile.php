@@ -41,9 +41,9 @@
 					<li><a href="index.html"><i class="fas fa-home fa-lg mx-3"></i>Home</a></li>
 					<li><a href="trash.html"><i class="fas fa-trash fa-lg mx-3"></i> Trash</a></li>
 					<li><a href="profile.html" class="active"><i class="fas fa-edit fa-lg mx-3"></i>My Profile</a></li>
-					<li><a href="AboutUs.html"><i class="fas fa-info-circle fa-lg mx-3"></i>About Us</a>
+					<li><a href="about_us.html"><i class="fas fa-info-circle fa-lg mx-3"></i>About Us</a>
 					</li>
-					<li><a href="Login.html"><i class="fas fa-sign-out-alt fa-lg mx-3"></i>Log Out</a></li>
+					<li><a href="signin.html"><i class="fas fa-sign-out-alt fa-lg mx-3"></i>Log Out</a></li>
 				</ul>
 			</div>
 			<div class="col-9 p-0 d-flex flex-column">

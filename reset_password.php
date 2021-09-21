@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign In</title>
+    <title>Reset Password</title>
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer"
@@ -18,7 +18,7 @@
             <div class="col-12 col-lg-6 forgotPasswordImgContainer m-0 p-0">
             </div>
             <div class="col-12 col-lg-6 d-flex justify-content-center align-items-center formContent">
-                <form action="Login.html" id="forgotPasswordForm" class=" col-10 col-lg-6">
+                <form action="signin.html" id="forgotPasswordForm" class=" col-10 col-lg-6">
                     <h4 class="pageHeader">Reset Password</h4>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email address</label>
@@ -29,7 +29,7 @@
 
                     </div>
                     <input type="submit" class="btn btn-primary primaryBtn" value="Send mail"></button>
-                    <span class="mx-3 backToLogin"><a href="Login.html">Back To Login</a></span>
+                    <span class="mx-3 backToLogin"><a href="signin.html">Back To Login</a></span>
                 </form>
             </div>
         </div>

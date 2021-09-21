@@ -27,7 +27,7 @@
                 </a>
             </div>
             <div class="col-4 d-flex justify-content-end">
-                <a href="Login.html">Sign In</a>
+                <a href="signin.html">Sign In</a>
             </div>
         </header>
         <main>
