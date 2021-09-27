@@ -1,3 +1,10 @@
+<?php 
+    session_start();
+    if(!isset($_SESSION["isAuthenticated"])){
+        header("location:signin.php");
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,11 +14,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="assets/css/style.css" />
+	<link rel="icon" type="image/png" href="assets/images/favicon.svg"/>
 	<script src="assets/js/bootstrap.bundle.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
 		integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
 		crossorigin="anonymous" referrerpolicy="no-referrer" />
-	<title>About Us</title>
+	<title>Profile</title>
 </head>
 
 <body id="profile">
@@ -38,12 +46,12 @@
 		<main class="row d-flex">
 			<div class="sidebar col-3 menu">
 				<ul class="w-100 menuList">
-					<li><a href="index.html"><i class="fas fa-home fa-lg mx-3"></i>Home</a></li>
-					<li><a href="trash.html"><i class="fas fa-trash fa-lg mx-3"></i> Trash</a></li>
-					<li><a href="profile.html" class="active"><i class="fas fa-edit fa-lg mx-3"></i>My Profile</a></li>
-					<li><a href="about_us.html"><i class="fas fa-info-circle fa-lg mx-3"></i>About Us</a>
+					<li><a href="index.php"><i class="fas fa-home fa-lg mx-3"></i>Home</a></li>
+					<!-- <li><a href="trash.html"><i class="fas fa-trash fa-lg mx-3"></i> Trash</a></li> -->
+					<li><a href="profile.php" class="active"><i class="fas fa-edit fa-lg mx-3"></i>My Profile</a></li>
+					<li><a href="about_us.php"><i class="fas fa-info-circle fa-lg mx-3"></i>About Us</a>
 					</li>
-					<li><a href="signin.html"><i class="fas fa-sign-out-alt fa-lg mx-3"></i>Log Out</a></li>
+					<li><a href="signout.php"><i class="fas fa-sign-out-alt fa-lg mx-3"></i>Log Out</a></li>
 				</ul>
 			</div>
 			<div class="col-9 p-0 d-flex flex-column">
@@ -51,7 +59,7 @@
 					<div>
 						<h5 class="contentHead">My Profile</h5>
 						<div class="mb-3 d-flex flex-column">
-							<label for="fullName" class="form-label">Photo</label>
+							<label for="avatar" class="form-label">Photo</label>
 							<div class="imgContainer mx-3">
 								<img src="assets/images/male.svg" alt="No Profile Found" width="90" height="90"
 									id="profilePhoto">
@@ -107,10 +115,11 @@
 				</div>
 				<div class="footer d-flex justify-content-end px-5">
 					<p class="copyright mx-4">copyright &#169; 2021. All rights reserved.</p>
+					<a href="tel:+919106715919"><i class="fas fa-phone-square-alt fa-lg mx-2" ></i></a>
 					<a href="https://facebook.com/bhavin.kareliya.02" target="_blank"><i
 							class="fab fa-facebook fa-lg mx-2"></i></a>
 					<a href="#" target="_blank"><i class="fab fa-twitter fa-lg mx-2"></i></a>
-					<a href="https://wa.me/+919106715919" target="_blank"><i class="fab fa-whatsapp fa-lg mx-2"></i></a>
+					<a href="https://wa.me/+919106715919" target="_blank"><i class="fab fa-whatsapp-square fa-lg mx-2"></i></a>
 					<a href="https://www.linkedin.com/in/bhavin-kareliya" target="_blank"><i
 							class="fab fa-linkedin fa-lg mx-2"></i></a>
 					<a href="https://www.instagram.com/bhavin__kareliya" target="_blank"><i

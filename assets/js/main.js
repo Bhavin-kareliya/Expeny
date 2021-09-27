@@ -89,7 +89,8 @@ $(document).ready(function () {
 		flag = birthDateValidate(date);
 	});
 
-	$("#loginForm").submit(function (e) {
+	function signinValidate() {
+		
 		e.preventDefault();
 		liveValidation = true;
 		var emailFlag = false, passFlag = false;
@@ -115,12 +116,12 @@ $(document).ready(function () {
 			liveValidation = false;
 			$("#emailError").addClass("d-none");
 			$("#passwordError").addClass("d-none");
-			window.location = "index.html";
+			return true;
 		}
-	})
+		return false;
+	}
 
-	$("#signUpForm").submit((e) => {
-		e.preventDefault();
+	function signupValidate() {
 		liveValidation = true;
 
 		const email = $("#email").val();
@@ -184,9 +185,10 @@ $(document).ready(function () {
 			$("#birthDateError").addClass("d-none");
 			$("#ageError").addClass("d-none");
 			$("#passwordError").addClass("d-none");
-			window.location = "login.html";
+			return true;
 		}
-	})
+		return false;
+	}
 
 	$("#forgotPasswordForm").submit((e) => {
 		e.preventDefault();
@@ -216,6 +218,7 @@ function passwordValidate(str) {
 		return true;
 	return false;
 }
+
 function birthDateValidate(date) {
 	if (date.trim().length == 0) {
 		$("#birthDateError").removeClass("d-none");

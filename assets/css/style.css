@@ -63,7 +63,7 @@ input[type]:focus {
     padding: 30px 30px;
 }
 
-#homePage .homePageLogo {
+#homePage .logoContainer {
     border-radius: 50%;
 }
 
@@ -152,7 +152,7 @@ input[type]:focus {
 
 .navigation {
     padding: 20px 50px;
-    box-shadow: 0 5px 3px -6px #2F1160;
+    border-bottom: 1px solid #2F1160;
 }
 
 .searchbar .searchIcon {
@@ -201,7 +201,7 @@ input[type]:focus {
 }
 
 .sidebar {
-    box-shadow: 0px 1px 1px 0px #2f1160;
+    border-right: 1px solid #2F1160;
 }
 
 .menu .menuList {
@@ -340,7 +340,7 @@ input[type]:focus {
     position: relative;
 }
 
-#profile .imgContainer i {
+#profile .imgContainer i{
     position: absolute;
     bottom: 0px;
     right: 0;
