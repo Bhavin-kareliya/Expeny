@@ -15,7 +15,8 @@
         
 </head>
 <?php
-    $showError = (isset($showError))?$showError:false;
+    $showError = (isset($showError)) ? $showError : false;
+    $_POST["userExistErr"] = (isset($_POST["userExistErr"])) ? $_POST["userExistErr"] : false;
     echo "<h1>$showError</h1>";
     $existingUserErr = (isset($existingUserErr))?$existingUserErr:false;
     if($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -27,9 +28,31 @@
 
         if(require 'connection.php')
         {
-            $query = "INSERT INTO `users`(`full_name`, `email`, `password`, `contact_number`, `birth_date`) VALUES ('$fullname','$email', MD5('$pass'), '$contact_number', '$birth_date');";
-            if(mysqli_query($conn, $query)) {
-                header("location: signin.php");
+            $userExistQuery = "select * form users where email='$email';";
+            $res = mysqli_query($conn, $userExistQuery);
+            if($res) {
+                if(!mysqli_num_rows($res)){
+                    $query = "INSERT INTO `users`(`full_name`, `email`, `password`, `contact_number`, `birth_date`) VALUES ('$fullname','$email', MD5('$pass'), '$contact_number', '$birth_date');";    
+                    if(mysqli_query($conn, $query)) {
+                        $id = mysqli_insert_id($conn);
+                        setcookie("UNVERIFIED_EMAIL", $email);
+                        $mail_body = '<html>
+                        <body>
+                        <h1>👋 Welcome To Expeny!</h1>
+                        <p>After this step you\'ll be able to start manage your expenses.</p>
+                        <p>To ensure you\'re legitimate and not some fake bot, please verify your account by clicking <a href="http://localhost:8080/Expeny/verify.php?id='.$id.'">here</a>.</p>
+                        </body>
+                        </html>';        
+                        $headers = "MIME-Version: 1.0" . "\r\n";
+                        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+                        $headers .= 'From: Expeny<bhavin.kareliya2017@gmail.com>' . "\r\n";
+                        
+                        if(mail($email, "Expeny - Verify Account", $mail_body, $headers))
+                            header("location: signup.php");
+                    }
+                } else {
+                    $_POST["userExistErr"] = true;
+                }
             }
         }
     }
@@ -43,6 +66,28 @@
             <div class="col-12 col-lg-6 d-flex justify-content-center align-items-center formContent">
                 <form method="POST" action="signup.php" id="signUpForm" class="col-10 col-lg-6">
                     <h4 class="pageHeader">Sign Up</h4>
+                    <?php
+                       if(isset($_COOKIE["UNVERIFIED_EMAIL"]))
+                       {
+                           echo '<div class="mb-3">
+                                    <div class="alert alert-primary" role="alert" data-bs-toggle="tooltip" data-bs-placement="top" title="verify email from '.$_COOKIE["UNVERIFIED_EMAIL"].'">
+                                        <i class="fas fa-info-circle"></i>
+                                        <span class="pl-2">Please verify your email.</span>
+                                    </div>
+                                </div>';
+                        }
+                    ?>
+                    <?php
+                       if(isset($_POST["userExistErr"]) && $_POST["userExistErr"] == true)
+                       {
+                           echo '<div class="mb-3">
+                                    <div class="alert alert-primary" role="alert" data-bs-toggle="tooltip" data-bs-placement="top" title="verify email from '.$_COOKIE["UNVERIFIED_EMAIL"].'">
+                                        <i class="fas fa-info-circle"></i>
+                                        <span class="pl-2">Email already exist.</span>
+                                    </div>
+                                </div>';
+                        }
+                    ?>
                     <div class="mb-3">
                         <label for="fullName" class="form-label">Full Name</label>
                         <input type="text" class="form-control" id="fullName" name="fullName" value="<?php echo isset($_POST["fullName"]) ? $_POST["fullName"] : ''; ?>">
