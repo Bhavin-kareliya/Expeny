@@ -21,10 +21,25 @@
                 $_SESSION["RES"] = mysqli_num_rows($res); 
                 if(!mysqli_num_rows($res)){
                     setcookie("userExistErr", "", time() - 3600);
-                    $query = "INSERT INTO `users`(`full_name`, `email`, `password`, `contact_number`, `birth_date`, `is_active`) VALUES ('$fullname','$email', MD5('$pass'), '$contact_number', '$birth_date', 1);";    
+                    $query = "INSERT INTO `users`(`full_name`, `email`, `password`, `contact_number`, `birth_date`) VALUES ('$fullname','$email', MD5('$pass'), '$contact_number', '$birth_date');";    
                     if(mysqli_query($conn, $query)) {
                         $id = mysqli_insert_id($conn);
-                        header("location: signin.php");
+                        $mail_body = '<html>
+                        <body>
+                        <h1>👋 Welcome To Expeny!</h1>
+                        <p>After this step you\'ll be able to start manage your expenses.</p>
+                        <p>To ensure you\'re legitimate and not some fake bot, please verify your account by clicking <a href="http://localhost:8080/Expeny/verify.php?id='.$id.'">here</a>.</p>
+                        </body>
+                        </html>';        
+                        $headers = "MIME-Version: 1.0" . "\r\n";
+                        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+                        $headers .= 'From: Expeny<bhavin.kareliya2017@gmail.com>' . "\r\n";
+                        
+                        if(mail($email, "Expeny - Verify Account", $mail_body, $headers))
+                        {
+                            setcookie("UNVERIFIED_EMAIL", $email);
+                            header("location: signup.php");
+                        } else {}
                     }
                 } else {
                     setcookie("userExistErr",$email);
@@ -81,7 +96,7 @@
                     ?>
                     <div class="mb-3">
                         <label for="fullName" class="form-label">Full Name</label>
-                        <input type="text" class="form-control" id="fullName" name="fullName" value="<?php echo isset($_POST["fullName"]) ? $_POST["fullName"] : ''; ?>" autocomplete="off">
+                        <input type="text" class="form-control" id="fullName" name="fullName" autocomplete="off">
                         <div class="d-none" id="fullNameError">
                             Please Enter Fullname.
                         </div>

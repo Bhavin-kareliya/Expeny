@@ -10,16 +10,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pass = $_POST["password"];
 
     if (require 'connection.php') {
-        $query = "SELECT * FROM users WHERE email='$email' and password=MD5('$pass') and is_active=1;";
+        $query = "SELECT * FROM users WHERE email='$email' and password=MD5('$pass');";
         $result = mysqli_query($conn, $query);
         if ($result) {
             $data = mysqli_fetch_assoc($result);
-            if ($data != null) {   
+            if ($data != null) { 
                 setcookie("noUserFoundErr", "", time()-3600);
-                $_SESSION["id"] = $data["user_id"];
-                $_SESSION["username"] = $data["full_name"];
-                $_SESSION["isAuthenticated"] = TRUE;
-                header("location: index.php");
+                if($data["is_active"] == 0)
+                {
+                    setcookie("UNVERIFIED_EMAIL", $email);    
+                    header("location: signin.php");
+                }  
+                else {
+                    $_SESSION["id"] = $data["user_id"];
+                    $_SESSION["username"] = $data["full_name"];
+                    $_SESSION["isAuthenticated"] = TRUE;
+                    header("location: index.php");
+                }
             } else {
                 setcookie("noUserFoundErr", $email, (time()+(60*5)));
                 header("location: signin.php");
@@ -49,6 +56,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="col-12 col-lg-6 d-flex justify-content-center align-items-center formContent">
                 <form method="POST" action="signin.php" id="signinForm" class=" col-10 col-lg-6">
                     <h4 class="pageHeader">Sign In</h4>
+                    <?php
+                       if(isset($_COOKIE['UNVERIFIED_EMAIL']))
+                       {
+                           
+                           echo '<div class="mb-3">
+                                    <div class="alert alert-primary" role="alert" data-bs-toggle="tooltip" data-bs-placement="top" title="verify email from '.$_COOKIE["UNVERIFIED_EMAIL"].'">
+                                        <i class="fas fa-info-circle"></i>
+                                        <span class="pl-2">Please verify email first.</span>
+                                    </div>
+                                </div>';
+                        }
+                    ?>
                     <?php
                        if(isset($_COOKIE["noUserFoundErr"]))
                        {
