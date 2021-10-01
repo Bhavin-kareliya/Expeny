@@ -11,16 +11,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (require 'connection.php') {
         $query = "SELECT * FROM users WHERE email='$email' and password=MD5('$pass') and is_active=1;";
-        if ($user = mysqli_query($conn, $query)) {
-            $rowcount = mysqli_num_rows($user);
-            if ($rowcount == 1) {
-                $data = mysqli_fetch_assoc($user);
+        $result = mysqli_query($conn, $query);
+        if ($result) {
+            $data = mysqli_fetch_assoc($result);
+            if ($data != null) {   
+                setcookie("noUserFoundErr", "", time()-3600);
                 $_SESSION["id"] = $data["user_id"];
                 $_SESSION["username"] = $data["full_name"];
                 $_SESSION["isAuthenticated"] = TRUE;
                 header("location: index.php");
+            } else {
+                setcookie("noUserFoundErr", $email, (time()+(60*5)));
+                header("location: signin.php");
             }
-        }
+        }  
     }
 }
 ?>
@@ -43,8 +47,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="col-12 col-lg-6 loginImgContainer m-0 p-0">
             </div>
             <div class="col-12 col-lg-6 d-flex justify-content-center align-items-center formContent">
-                <form method="POST" action="signin.php" id="loginForm" class=" col-10 col-lg-6">
+                <form method="POST" action="signin.php" id="signinForm" class=" col-10 col-lg-6">
                     <h4 class="pageHeader">Sign In</h4>
+                    <?php
+                       if(isset($_COOKIE["noUserFoundErr"]))
+                       {
+                           echo '<div class="mb-3">
+                                    <div class="alert alert-danger" role="alert">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                        <span class="pl-2">Invalid email or password.</span>
+                                    </div>
+                                </div>';
+                        }
+                    ?>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email address</label>
                         <input type="text" class="form-control col-md-12" id="email" name="email">
@@ -63,7 +78,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <input type="checkbox" class="form-check-input" id="rememberUser">
                         <label class="form-check-label" for="rememberUser">Remember me </label>
                     </div> -->
-                    <button type="submit" class="btn btn-primary primaryBtn" onclick="return signinValidate()">Log In</button>
+                    <!-- <button type="submit" class="btn btn-primary primaryBtn" onclick="return signinValidate()">Log In</button> -->
+                    <button type="submit" class="btn btn-primary primaryBtn" id="validateSignIn">Log In</button>
                     <span class="mx-3 forgotPassword"><a href="reset_password.php">Forgot password?</a></span>
                     <div class="mt-3">
                         <span class="forgotPassword"><a href="signup.php">Not have an Account? Create

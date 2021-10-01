@@ -142,10 +142,12 @@ input[type]:focus {
     color: #2F1160;
 }
 
-#loginForm .forgotPassword a,
+#signUpForm .signinLink a,
+#signinForm .forgotPassword a,
 #forgotPassword .backToLogin a {
     font-weight: bold;
     color: #2F1160;
+    font-size: 14px;
     text-decoration: none;
 }
 

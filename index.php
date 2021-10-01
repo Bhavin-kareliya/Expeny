@@ -1,7 +1,7 @@
 <?php 
     session_start();
     if(!isset($_SESSION["isAuthenticated"])){
-        header("location:home.php");
+        header("location: signin.php");
     }
 ?>
 

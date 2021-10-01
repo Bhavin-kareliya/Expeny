@@ -5,13 +5,14 @@ const contactRegex = new RegExp("^[0-9]{10}$");
 var liveValidation = false;
 const today = new Date();
 
-$(document).ready(function () {
-	var tooltipTriggerList = [].slice.call(
-		document.querySelectorAll('[data-bs-toggle="tooltip"]')
-	);
-	var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-		return new bootstrap.Tooltip(tooltipTriggerEl);
-	});
+var tooltipTriggerList = [].slice.call(
+	document.querySelectorAll('[data-bs-toggle="tooltip"]')
+);
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+	return new bootstrap.Tooltip(tooltipTriggerEl);
+});
+
+$(document).ready(function (e) {
 
 	$("#fullName").keyup((e) => {
 		if (!liveValidation) return 0;
@@ -84,39 +85,24 @@ $(document).ready(function () {
 		flag = birthDateValidate(date);
 	});
 
-	function signinValidate() {
+
+	$("#forgotPasswordForm").submit((e) => {
 		e.preventDefault();
 		liveValidation = true;
-		var emailFlag = false,
-			passFlag = false;
 		const email = $("#email").val();
-		const password = $("#password").val();
 
 		if (!emailValidate(email)) {
-			emailFlag = false;
 			$("#emailError").removeClass("d-none");
 		} else {
-			emailFlag = true;
-		}
-		if (!passwordValidate(password)) {
-			passFlag = false;
-			$("#passwordError").removeClass("d-none");
-		} else {
-			passFlag = true;
-		}
-		if (emailFlag && passFlag) {
 			console.log("Login Validation Successfull");
 			liveValidation = false;
 			$("#emailError").addClass("d-none");
-			$("#passwordError").addClass("d-none");
-			return true;
+			window.location = "login.html";
 		}
-		return false;
-	}
+	});
 
-	function signupValidate() {
+	$("#validateSignUp").on('click', function (e) {
 		e.preventDefault();
-		console.log("Hitting");
 		liveValidation = true;
 		const email = $("#email").val();
 		const contactNumber = $("#contactNumber").val();
@@ -185,26 +171,41 @@ $(document).ready(function () {
 			$("#birthDateError").addClass("d-none");
 			$("#ageError").addClass("d-none");
 			$("#passwordError").addClass("d-none");
-			return true;
+			$("#signUpForm").submit();
 		} else {
 			return false;
 		}
-	}
+	})
 
-	$("#forgotPasswordForm").submit((e) => {
+	$("#validateSignIn").on('click', function (e) {
 		e.preventDefault();
 		liveValidation = true;
+		var emailFlag = false,
+			passFlag = false;
 		const email = $("#email").val();
+		const password = $("#password").val();
 
 		if (!emailValidate(email)) {
+			emailFlag = false;
 			$("#emailError").removeClass("d-none");
 		} else {
+			emailFlag = true;
+		}
+		if (!passwordValidate(password)) {
+			passFlag = false;
+			$("#passwordError").removeClass("d-none");
+		} else {
+			passFlag = true;
+		}
+		if (emailFlag && passFlag) {
 			console.log("Login Validation Successfull");
 			liveValidation = false;
 			$("#emailError").addClass("d-none");
-			window.location = "login.html";
+			$("#passwordError").addClass("d-none");
+			$("#signinForm").submit();
 		}
-	});
+		return false;
+	})
 });
 
 function emailValidate(str) {
