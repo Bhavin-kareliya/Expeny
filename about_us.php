@@ -24,23 +24,7 @@
 
 <body id="aboutUs">
 	<div class="container-fluid navigation">
-		<header class="row">
-			<div class="logo col-12 col-lg-6">
-				<img src="assets/images/favicon.svg" alt="No Image Loaded" height="78" width="53" />
-			</div>
-			<div class="profile col-6 d-flex  justify-content-end align-items-center">
-				<div class=" input-group searchbar">
-					<span class="input-group-text searchIcon py-0 px-3"><i class="fas fa-search"></i></span>
-					<input type="text" class="form-control searchField" placeholder="Search" />
-				</div>
-				<div class="imgContainer mx-3">
-					<img src="assets/images/male.svg" alt="No Profile Found" width="90" height="90" id="profilePhoto">
-				</div>
-				<div class="d-flex col-3">
-					<p class="my-0 username">Bhavin Kareliya</p>
-				</div>
-			</div>
-		</header>
+	<?php require 'header.php' ?>
 	</div>
 	<div class="container-fluid">
 		<main class="row d-flex">
@@ -95,18 +79,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="footer d-flex justify-content-end px-5">
-					<p class="copyright mx-4">copyright &#169; 2021. All rights reserved.</p>
-					<a href="tel:+919106715919"><i class="fas fa-phone-square-alt fa-lg mx-2" ></i></a>
-					<a href="https://facebook.com/bhavin.kareliya.02" target="_blank"><i
-							class="fab fa-facebook fa-lg mx-2"></i></a>
-					<a href="#" target="_blank"><i class="fab fa-twitter fa-lg mx-2"></i></a>
-					<a href="https://wa.me/+919106715919" target="_blank"><i class="fab fa-whatsapp-square fa-lg mx-2"></i></a>
-					<a href="https://www.linkedin.com/in/bhavin-kareliya" target="_blank"><i
-							class="fab fa-linkedin fa-lg mx-2"></i></a>
-					<a href="https://www.instagram.com/bhavin__kareliya" target="_blank"><i
-							class="fab fa-instagram fa-lg mx-2"></i></a>
-				</div>
+				<?php require 'footer.php' ?>
 			</div>
 		</main>
 	</div>

@@ -85,7 +85,6 @@ $(document).ready(function (e) {
 		flag = birthDateValidate(date);
 	});
 
-
 	$("#forgotPasswordForm").submit((e) => {
 		e.preventDefault();
 		liveValidation = true;
@@ -205,6 +204,50 @@ $(document).ready(function (e) {
 			$("#signinForm").submit();
 		}
 		return false;
+	})
+
+	$("#validateExpenseForm").on('click', function (e) {
+		e.preventDefault();
+		$expense_name = $("#expense_name").val();
+		$expense_date = new Date($("#expense_date").val());
+		$expense_category = $('#expense_category').val();
+		$expense_img = $('#expense_img').val();
+		$expense_amount = $('#expense_amount').val();
+		var nameFlag, dateFlag, amountFlag;
+		 
+		if ($expense_name.trim().length != 0) {
+			$("#exp_name_err").removeClass("d-none");
+			nameFlag = false;
+		} else {
+			$("#exp_name_err").addClass("d-none");
+			nameFlag = true;
+		}
+		if ($expense_date > new Date()){
+			$("#expInvalidDate").removeClass("d-none");
+			$dateFlag = false;
+		} else {
+			$("#expInvalidDate").addClass("d-none");
+			$dateFlag = true;
+		}
+		if (parseInt($expense_amount)) {
+			if($expense_amount < 0) {
+				$("#amountValErr").removeClass("d-none");
+				amountFlag = false;
+			} else {
+				$("#amountTypeErr").addClass("d-none");	
+				$("#amountValErr").addClass("d-none");
+				amountFlag = true;
+			}
+		} else {
+			$("#amountTypeErr").removeClass("d-none");
+			amountFlag = false;
+		}
+		if(amountFlag && dateFlag && nameFlag) {
+			console.log("Expense Form Validation Successfull.");
+			return true;
+		} else {
+			return false;
+		}
 	})
 });
 

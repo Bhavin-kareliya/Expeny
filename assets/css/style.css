@@ -11,6 +11,7 @@ body {
     }
     #login .loginImgContainer,
     #signUp .signUpImgContainer,
+    #verify .verifyImgContainer,
     #forgotPassword .forgotPasswordImgContainer {
         background: none;
     }
@@ -39,6 +40,18 @@ body {
     background-repeat: no-repeat;
     background-position: center;
 }
+#verify .verifyImgContainer {
+    background: url("../images/EmailVerification.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    
+    background-size: 70%;
+}
+#forgotPassword .forgotPasswordImgContainer {
+    background: url("../images/forgotPassword.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+}
 
 input[type]:focus {
     background-color: #E8F0FE;
@@ -46,16 +59,11 @@ input[type]:focus {
     outline: 0;
 }
 
-#forgotPassword .forgotPasswordImgContainer {
-    background: url("../images/forgotPassword.svg");
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
+#verify .verifyContainer .formContent,
 #login .loginContainer .formContent,
 #signUp .signUpContainer .formContent,
 #forgotPassword .forgotPasswordContainer .formContent {
-    height: 100vh;
+    height: 100vh !important;
 }
 
 #homePage {

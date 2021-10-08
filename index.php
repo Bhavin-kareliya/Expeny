@@ -23,23 +23,7 @@
 
 <body id="dashboard">
     <div class="container-fluid navigation">
-        <header class="row">
-            <div class="logo col-12 col-lg-6">
-                <img src="assets/images/favicon.svg" alt="No Image Loaded" height="78" width="53" />
-            </div>
-            <div class="profile col-6 d-flex  justify-content-end align-items-center">
-                <!-- <div class=" input-group searchbar">
-                    <span class="input-group-text searchIcon py-0 px-3"><i class="fas fa-search"></i></span>
-                    <input type="text" class="form-control searchField" placeholder="Search" />
-                </div> -->
-                <div class="imgContainer mx-3">
-                    <img src="assets/images/male.svg" alt="No Profile Found" width="90" height="90" id="profilePhoto">
-                </div>
-                <div class="d-flex col-auto">
-                    <p class="my-0 username"><?php echo $_SESSION["username"] ?></p>
-                </div>
-            </div>
-        </header>
+        <?php require 'header.php' ?>
     </div>
     <div class="container-fluid">
         <main class="row d-flex">
@@ -144,18 +128,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="footer d-flex justify-content-end px-5">
-                    <p class="copyright mx-4">copyright &#169; 2021. All rights reserved.</p>
-                    <a href="tel:+919106715919"><i class="fas fa-phone-square-alt fa-lg mx-2" ></i></a>
-                    <a href="https://facebook.com/bhavin.kareliya.02" target="_blank"><i
-                            class="fab fa-facebook fa-lg mx-2"></i></a>
-                    <a href="#" target="_blank"><i class="fab fa-twitter fa-lg mx-2"></i></a>
-                    <a href="https://wa.me/+919106715919" target="_blank"><i class="fab fa-whatsapp-square fa-lg mx-2"></i></a>
-                    <a href="https://www.linkedin.com/in/bhavin-kareliya" target="_blank"><i
-                            class="fab fa-linkedin fa-lg mx-2"></i></a>
-                    <a href="https://www.instagram.com/bhavin__kareliya" target="_blank"><i
-                            class="fab fa-instagram fa-lg mx-2"></i></a>
-                </div>
+                <?php require 'footer.php' ?>
             </div>
         </main>
     </div>
@@ -169,7 +142,7 @@
 
 </html>
 
-<div class="modal modal-fullscreen-sm-down fade" id="exampleModalToggle" aria-hidden="true"
+<!-- <div class="modal modal-fullscreen-sm-down fade" id="exampleModalToggle" aria-hidden="true"
     aria-labelledby="exampleModalToggleLabel" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -238,7 +211,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 <div class="modal modal-fullscreen-sm-down fade" id="expenseDetailModal" aria-hidden="true"
     aria-labelledby="expenseDetail" tabindex="-1">
@@ -281,10 +254,10 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form>
+                <form action="index.php" method="post" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="category" class="form-label">Category</label>
-                        <select class="form-select">
+                        <select class="form-select" id="expense_category" name="expense_category">
                             <option value="0">Uncategorized</option>
                             <option value="1">Company</option>
                             <option value="2">Regular</option>
@@ -293,31 +266,34 @@
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Expense Name:</label>
-                        <input type="text" placeholder="Enter name" class="form-control">
+                        <label for="expense_name" class="form-label">Expense Name:</label>
+                        <input type="text" placeholder="Enter name" class="form-control" id="expense_name" name="expense_name">
                     </div>
-
+                    <div class="mb-3">
+                        <label for="expense_name" class="form-label">Expense Date:</label>
+                        <input type="date" placeholder="Enter name" class="form-control" id="expense_date" name="expense_date">
+                    </div>
                     <div class="mb-3">
                         <label for="imgFile" class="form-label">Image:</label>
-                        <input class="form-control" type="file" id="ExpenseImage" accept="image/*">
+                        <input class="form-control" type="file" id="ExpenseImage" accept="image/*" id="expense_img" name="expense_image">
                     </div>
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Price:</label>
+                        <label for="expense_amount" class="form-label">Amount:</label>
                         <div class="input-group mb-3">
                             <span class="input-group-text">&#8377;</span>
-                            <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                            <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" id="expense_amount" name="expense_amount">
                         </div>
                     </div>
                     <div class="mb-3">
                         <label for="expenseDescr" class="form-label">Expense Notes:</label>
                         <textarea name="expenseDescr" class="form-control" placeholder="Describe Here ..."
-                            id="ExpenseDescr" rows="3"></textarea>
+                            id="expense_descr" name="expense_descr" rows="3"></textarea>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Discard</button>
-                <button type="button" class="btn btn-primary inviteUserBtn" data-bs-dismiss="modal">Create
+                <button type="button" class="btn btn-primary inviteUserBtn" data-bs-dismiss="modal" id="validateExpenseForm">Create
                     Expense</button>
             </div>
         </div>
